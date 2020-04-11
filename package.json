@@ -1,0 +1,17 @@
+{
+  "name": "planning-poker-discord-bot",
+  "version": "1.0.0",
+  "description": "A discord bot for playing planning poker",
+  "main": "index.js",
+  "author": "Fabian Kutsche",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "discord.js": "^12.1.1",
+    "dotenv": "^8.2.0"
+  }
+}
