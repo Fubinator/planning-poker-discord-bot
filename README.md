@@ -4,6 +4,14 @@ A bot to play planning poker on Discord.
 
 ## Getting Started
 
+### Creating the bot
+* Go to [Discor Developers Portal](https://discord.com/developers/applications).
+* Click on **new application** button in top right.
+* Give the name of the application and navigate to the __Bot__ tab.
+* Click on the **Add Bot** button.
+* Make sure that **Public Bot** is ticked if you want to invite others.
+* Congratulations, You have created your Bot. Configure your Bot accordingly.
+
 ### Installation
 
 ```bash
