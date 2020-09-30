@@ -7,11 +7,14 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "cd src && nodemon index.js",
+    "start": "cd src && node index.js"
   },
   "dependencies": {
     "discord.js": "^12.1.1",
     "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
