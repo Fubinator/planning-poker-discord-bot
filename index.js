@@ -63,12 +63,12 @@ client.on("message", message => {
     message.channel.send("Planning Poker finished");
     message.channel.send("Here is an overview of your game:");
 
-    let totalStoryPoints = 0
+    let totalStoryPoints = 0;
     for (const question of Poker.questions) {
       message.channel.send(
         `Question: ${question.question} Story Points: ${question.storypoints}`
       );
-      totalStoryPoints += question.storypoints
+      totalStoryPoints += question.storypoints;
     }
 
 
