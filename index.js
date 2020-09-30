@@ -72,9 +72,9 @@ client.on("message", message => {
     }
 
 
+
+
     message.channel.send(`Total Story Points: ${totalStoryPoints}`);
-
-
     Poker.finishGame();
 
     return;
