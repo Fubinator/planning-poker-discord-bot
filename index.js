@@ -30,7 +30,7 @@ client.on("message", message => {
     const question = message.content.split(" ").splice(1).join(" ");
 
     message.channel.send(`First question: ${question}`);
-    message.channel.send(`Please provide your guesses`);
+    message.channel.send("Please provide your guesses");
 
     Poker.playQuestion(question);
 
@@ -39,7 +39,7 @@ client.on("message", message => {
       message.channel.send(
         "Please enter the number of storypoints with !storypoints [AMOUNT] when you finished discussing"
       );
-      for (answer of Poker.currentAnswers) {
+      for (const answer of Poker.currentAnswers) {
         message.channel.send(`${answer.user}: ${answer.points}`);
       }
     }, 30 * 1000);
@@ -63,15 +63,17 @@ client.on("message", message => {
     message.channel.send("Planning Poker finished");
     message.channel.send("Here is an overview of your game:");
 
-    let totalStoryPoints = 0;
-    for (question of Poker.questions) {
+    let totalStoryPoints = 0
+    for (const question of Poker.questions) {
       message.channel.send(
         `Question: ${question.question} Story Points: ${question.storypoints}`
       );
-      totalStoryPoints += question.storypoints;
+      totalStoryPoints += question.storypoints
     }
 
+
     message.channel.send(`Total Story Points: ${totalStoryPoints}`);
+
 
     Poker.finishGame();
 
