@@ -10,7 +10,7 @@ client.on("ready", () => {
   console.log("I am ready!");
 });
 
-client.on("message", (message) => {
+client.on("message", message => {
   if (message.author.username === "planning-poker-bot") return;
 
   if (message.content === "!start") {
@@ -52,7 +52,9 @@ client.on("message", (message) => {
 
     const storypoints = message.content.split(" ")[1];
 
-    message.channel.send(`Added ${storypoints} to your question ${Poker.currentQuestion}`);
+    message.channel.send(
+      `Added ${storypoints} to your question ${Poker.currentQuestion}`
+    );
 
     Poker.finishQuestion(storypoints);
   }
@@ -61,8 +63,15 @@ client.on("message", (message) => {
     message.channel.send("Planning Poker finished");
     message.channel.send("Here is an overview of your game:");
 
-    for (question of Poker.questions)
-      message.channel.send(`Question: ${question.question} Story Points: ${question.storypoints}`);
+    let totalStoryPoints = 0;
+    for (question of Poker.questions) {
+      message.channel.send(
+        `Question: ${question.question} Story Points: ${question.storypoints}`
+      );
+      totalStoryPoints += question.storypoints;
+    }
+
+    message.channel.send(`Total Story Points: ${totalStoryPoints}`);
 
     Poker.finishGame();
 
