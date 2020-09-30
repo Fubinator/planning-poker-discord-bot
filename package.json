@@ -8,10 +8,14 @@
   "private": false,
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "npx eslint ./"
   },
   "dependencies": {
     "discord.js": "^12.1.1",
     "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0"
   }
 }
