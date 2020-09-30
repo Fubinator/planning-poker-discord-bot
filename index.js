@@ -11,7 +11,7 @@ client.on("ready", () => {
 });
 
 client.on("message", (message) => {
-  if (message.author.username === "planning-poker-bot") return;
+  if (message.author.username === process.env.BOT_NAME) return;
 
   if (message.content === "!start") {
     message.channel.send("Welcome to planning poker");
