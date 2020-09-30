@@ -1,12 +1,12 @@
 const Poker = {
-  questionRunning: false,
+  isQuestionRunning: false,
   currentAnswers: [],
   currentQuestion: undefined,
   questions: [],
 
   playQuestion(question) {
     this.currentQuestion = question;
-    this.questionRunning = true;
+    this.isQuestionRunning = true;
   },
 
   addAnswer(user, points) {
@@ -21,7 +21,7 @@ const Poker = {
     });
     this.currentQuestion = undefined;
     this.currentAnswers = [];
-    this.questionRunning = false;
+    this.isQuestionRunning = false;
   },
 
   finishGame() {

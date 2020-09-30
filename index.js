@@ -25,7 +25,7 @@ client.on("message", (message) => {
   }
 
   if (message.content.startsWith("!play")) {
-    if (Poker.questionRunning) return;
+    if (Poker.isQuestionRunning) return;
 
     const question = message.content.split(" ").splice(1).join(" ");
 
@@ -48,7 +48,7 @@ client.on("message", (message) => {
   }
 
   if (message.content.startsWith("!storypoints")) {
-    if (!Poker.questionRunning) return;
+    if (!Poker.isQuestionRunning) return;
 
     const storypoints = message.content.split(" ")[1];
 
@@ -73,7 +73,7 @@ client.on("message", (message) => {
     return;
   }
 
-  if (message.channel.type === "dm" && Poker.questionRunning) {
+  if (message.channel.type === "dm" && Poker.isQuestionRunning) {
     Poker.addAnswer(message.author.username, message.content);
   }
 });
