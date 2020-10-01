@@ -23,6 +23,6 @@ module.exports = {
       for (const answer of Poker.currentAnswers) {
         message.channel.send(`${answer.user}: ${answer.points}`);
       }
-    }, 30 * 1000);
-  },
+    }, args.waitingSeconds);
+  }
 };

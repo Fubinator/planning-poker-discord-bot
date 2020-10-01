@@ -1,65 +1,6 @@
-/* eslint-disable linebreak-style */
 require("dotenv").config({ path: "../.env" });
-const fs = require("fs");
 
-const { Client, Collection } = require("discord.js");
-
-const Poker = require("./poker");
-
-const client = new Client();
-client.commands = new Collection();
-
-const commandFiles = fs
-  .readdirSync("./commands")
-  .filter((file) => file.endsWith(".js"));
-
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
-}
-
-const games = new Collection();
-
-client.on("ready", () => {
-  console.log("I am ready!");
-});
-
-client.on("message", (message) => {
-  if (message.author.username === process.env.BOT_NAME) return;
-
-  const args = message.content.trim().split(/ +/);
-  const command = args.shift().toLowerCase();
-
-  if (command === "!start") {
-    client.commands.get("start").execute(message, { args, games });
-  }
-
-  if (message.content.startsWith("!play")) {
-    client.commands.get("play").execute(message, { args, Poker });
-  }
-
-  if (message.content.startsWith("!storypoints")) {
-    client.commands.get("storypoints").execute(message, { args, Poker });
-  }
-
-  if (message.content === "!end") {
-    client.commands.get("end").execute(message, { args, Poker, games });
-  }
-
-  if (message.content === "!help") {
-    message.channel.send([
-      "Here are the known commands:",
-      "- `!start`: engage into a new game, if none is running",
-      "- `!play <question>`: asks a question for the players to answer to the bot in DM within 30 seconds",
-      "- `!storypoints <points>`: defines the running question with a numeric point",
-      "- `!end`: wraps a game and shows the overview of questions"
-    ].join("\n"));
-  }
-
-  if (message.channel.type === "dm" && Poker.isQuestionRunning) {
-    Poker.addAnswer(message.author.username, message.content);
-  }
-});
+const { client } = require("./client");
 
 // distinguishing the different types of error
 // otherwhise we can use only one try/catch block and return a general error
@@ -70,6 +11,7 @@ const login = async () => {
     try {
       await client.login(process.env.DISCORD_SECRET);
     } catch (e) {
+      console.log(e);
       // DISCORD_SECRET is not valid, failed to login
       console.log("The token provided not seems to be valid");
       process.exit(1);
