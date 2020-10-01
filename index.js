@@ -32,7 +32,7 @@ client.on("message", (message) => {
   }
 
   if (message.content.startsWith("!play")) {
-    if (Poker.isQuestionRunning) return;
+    if (Poker.isQuestionRunning) return message.channel.send("There is already a question in progress.");
 
     const question = message.content.split(" ").splice(1).join(" ");
 
@@ -55,7 +55,7 @@ client.on("message", (message) => {
   }
 
   if (message.content.startsWith("!storypoints")) {
-    if (!Poker.isQuestionRunning) return;
+    if (!Poker.isQuestionRunning) return message.channel.send("You are currently not answering a question.");
 
     const storypoints = message.content.split(" ")[1];
 
