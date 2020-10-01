@@ -52,11 +52,24 @@ client.on("message", (message) => {
 
     const storypoints = message.content.split(" ")[1];
 
-    message.channel.send(
-      `Added ${storypoints} to your question ${Poker.currentQuestion}`
-    );
+    if(!isNaN(storypoints)){
 
-    Poker.finishQuestion(storypoints);
+      message.channel.send(
+        `Added ${storypoints} to your question ${Poker.currentQuestion}`
+      );
+  
+      Poker.finishQuestion(storypoints);
+
+    }else{
+
+      message.channel.send(
+        "The amount should be a valid number"
+      );
+
+    }
+    
+
+   
   }
 
   if (message.content === "!end") {
