@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": false,
   "scripts": {
+    "test": "jest --detectOpenHandles --forceExit",
     "dev": "cd src && nodemon index.js",
     "start": "cd src && node index.js",
     "lint": "npx eslint ./"
@@ -17,6 +18,7 @@
   },
   "devDependencies": {
     "eslint": "^7.10.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "jest": "^26.4.2"
   }
 }
