@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
@@ -29,20 +30,21 @@ const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
   const args = message.content.trim().split(/ +/);
   const command = args.shift().toLowerCase();
 
-  if (command === "!start") {
-    client.commands.get("start").execute(message, { args, games });
-  }
-
-  if (message.content.startsWith("!play")) {
-    client.commands.get("play").execute(message, { args, Poker, waitingSeconds });
-  }
-
-  if (message.content.startsWith("!storypoints")) {
-    client.commands.get("storypoints").execute(message, { args, Poker });
-  }
-
-  if (message.content === "!end") {
-    client.commands.get("end").execute(message, { args, Poker, games });
+  switch (command) {
+    case "!start":
+      client.commands.get("start").execute(message, { args, games });
+      break;
+    case "!play":
+      client.commands.get("play").execute(message, { args, Poker, waitingSeconds });
+      break;
+    case "!storypoints":
+      client.commands.get("storypoints").execute(message, { args, Poker });
+      break;
+    case "!end":
+      client.commands.get("end").execute(message, { args, Poker, games });
+      break;
+    default:
+      break;
   }
 
   if (message.content === "!help") {
