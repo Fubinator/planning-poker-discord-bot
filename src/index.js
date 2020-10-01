@@ -32,7 +32,8 @@ client.on("message", (message) => {
   }
 
   if (message.content.startsWith("!play")) {
-    if (Poker.isQuestionRunning) return message.channel.send("There is already a question in progress.");
+    if (Poker.isQuestionRunning)
+      return message.channel.send("There is already a question in progress.");
 
     const question = message.content.split(" ").splice(1).join(" ");
 
@@ -55,14 +56,13 @@ client.on("message", (message) => {
   }
 
   if (message.content.startsWith("!storypoints")) {
-    if (!Poker.isQuestionRunning) return message.channel.send("You are currently not answering a question.");
+    if (!Poker.isQuestionRunning)
+      return message.channel.send("You are currently not answering a question.");
 
     const storypoints = parseInt(message.content.split(" ")[1]);
 
     if (!isNaN(storypoints)) {
-      message.channel.send(
-        `Added ${storypoints} to your question ${Poker.currentQuestion}`
-      );
+      message.channel.send(`Added ${storypoints} to your question ${Poker.currentQuestion}`);
 
       Poker.finishQuestion(storypoints);
     } else {
@@ -76,9 +76,7 @@ client.on("message", (message) => {
     if (games.has(message.channel.id)) games.delete(message.channel.id);
 
     for (const question of Poker.questions)
-      message.channel.send(
-        `Question: ${question.question} Story Points: ${question.storypoints}`
-      );
+      message.channel.send(`Question: ${question.question} Story Points: ${question.storypoints}`);
 
     Poker.finishGame();
 
@@ -93,20 +91,21 @@ client.on("message", (message) => {
 // distinguishing the different types of error
 // otherwhise we can use only one try/catch block and return a general error
 const login = async () => {
-  let credentials = process.env.DISCORD_SECRET || false
+  const credentials = process.env.DISCORD_SECRET || false;
+
   if (credentials) {
     try {
       await client.login(process.env.DISCORD_SECRET);
     } catch (e) {
       // DISCORD_SECRET is not valid, failed to login
-      console.log("The token provided not seems to be valid")
-      process.exit(1)
+      console.log("The token provided not seems to be valid");
+      process.exit(1);
     }
   } else {
     // DISCORD_SECRET is empty or cannot find .env file
-    console.log('You must provide a token');
-    process.exit(1)
+    console.log("You must provide a token");
+    process.exit(1);
   }
-}
+};
 
-login()
+login();
