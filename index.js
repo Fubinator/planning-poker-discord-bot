@@ -1,6 +1,6 @@
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config();
 
-const { client } = require("./client");
+const { client } = require("./src/client");
 
 // distinguishing the different types of error
 // otherwhise we can use only one try/catch block and return a general error
