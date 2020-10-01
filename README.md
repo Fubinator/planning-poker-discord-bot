@@ -24,7 +24,7 @@ After cloning the Repository and installing the dependencies, you need to copy t
 ### Running the bot
 
 ```bash
-node index.js
+npm start
 ```
 
 ## Playing the game

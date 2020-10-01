@@ -7,8 +7,8 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js",
+    "dev": "cd src && nodemon index.js",
+    "start": "cd src && node index.js",
     "lint": "npx eslint ./"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "dotenv": "^8.2.0"
   },
   "devDependencies": {
-    "eslint": "^7.10.0"
+    "eslint": "^7.10.0",
+    "nodemon": "^2.0.4"
   }
 }
