@@ -8,14 +8,13 @@ const client = new Discord.Client();
 
 client.on("ready", () => {
   console.log(`Bot started on HTTP version ${client.options.http.version} on ${client.readyAt}`);
-  console.log(client)
 });
 
 client.on("message", (message) => {
   if (message.author.username === "planning-poker-bot") return;
 
   if (message.content === "!start") {
-    message.channel.send(`"Welcome to planning poker"`);
+    message.channel.send("Welcome to planning poker");
     message.channel.send("Please start your first round with !play [QUESTION]");
     message.channel.send(
       "For each round you've got 30 seconds to write your guessed number of story points via dm to the bot"
