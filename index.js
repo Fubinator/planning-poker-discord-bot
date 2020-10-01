@@ -57,13 +57,17 @@ client.on("message", (message) => {
   if (message.content.startsWith("!storypoints")) {
     if (!Poker.isQuestionRunning) return message.channel.send("You are currently not answering a question.");
 
-    const storypoints = message.content.split(" ")[1];
+    const storypoints = parseInt(message.content.split(" ")[1]);
 
-    message.channel.send(
-      `Added ${storypoints} to your question ${Poker.currentQuestion}`
-    );
+    if (!isNaN(storypoints)) {
+      message.channel.send(
+        `Added ${storypoints} to your question ${Poker.currentQuestion}`
+      );
 
-    Poker.finishQuestion(storypoints);
+      Poker.finishQuestion(storypoints);
+    } else {
+      message.channel.send("The amount should be a valid number");
+    }
   }
 
   if (message.content === "!end") {
