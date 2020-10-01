@@ -88,6 +88,16 @@ client.on("message", (message) => {
     return;
   }
 
+  if (message.content === "!help") {
+    message.channel.send([
+      "Here are the known commands:",
+      "- `!start`: engage into a new game, if none is running",
+      "- `!play <question>`: asks a question for the players to answer to the bot in DM within 30 seconds",
+      "- `!storypoints <points>`: defines the running question with a numeric point",
+      "- `!end`: wraps a game and shows the overview of questions"
+    ].join("\n"))
+  }
+
   if (message.channel.type === "dm" && Poker.isQuestionRunning) {
     Poker.addAnswer(message.author.username, message.content);
   }
