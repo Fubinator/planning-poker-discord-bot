@@ -1,6 +1,7 @@
 # Planning Poker Discord bot
 
-A bot to play planning poker on Discord.
+
+A BOT TO PLAY PLANING POKER ON DISCORD.
 
 ## Getting Started
 
