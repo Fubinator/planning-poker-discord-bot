@@ -73,12 +73,17 @@ client.on("message", (message) => {
   if (message.content === "!end") {
     message.channel.send("Planning Poker finished");
     message.channel.send("Here is an overview of your game:");
-    if (games.has(message.channel.id)) games.delete(message.channel.id);
 
-    for (const question of Poker.questions)
+    let totalStoryPoints = 0;
+    for (const question of Poker.questions) {
       message.channel.send(`Question: ${question.question} Story Points: ${question.storypoints}`);
+      totalStoryPoints += question.storypoints;
+    }
+
+    message.channel.send(`Total Story Points: ${totalStoryPoints}`);
 
     Poker.finishGame();
+    if (games.has(message.channel.id)) games.delete(message.channel.id);
 
     return;
   }
