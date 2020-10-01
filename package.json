@@ -8,8 +8,8 @@
   "private": false,
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit",
-    "dev": "cd src && nodemon ./src/index.js",
-    "start": "cd src && node ./src/index.js",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "lint": "npx eslint ./"
   },
   "dependencies": {
