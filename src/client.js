@@ -19,7 +19,7 @@ for (const file of commandFiles) {
 const games = new Collection();
 
 client.on("ready", () => {
-  console.log("I am ready!");
+  console.log(`Bot started on HTTP version ${client.options.http.version} on ${client.readyAt}`);
 });
 
 const timeoutInSeconds = 30 * 1000;
