@@ -27,7 +27,7 @@ const timeoutInSeconds = 30 * 1000;
 
 const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
   //ignore the message if it's a message from the bot or it doesn't start with !
-  if (message.author.bot || !message.content.startsWith(prefix)) return;
+  if (message.author.bot) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   //allArgs is an object including arguments required by *any* command. This way, we can 
