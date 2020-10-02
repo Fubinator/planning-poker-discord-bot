@@ -31,8 +31,8 @@ const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   //allArgs is an object including arguments required by *any* command. This way, we can 
-  //execute commands on line 43 dynamically, instead of of switch/case and manual execution
-  //this makes the codebase easier to maintain and scale :)
+  //execute commands dynamically via command.execute(message, allArgs), instead of switch/case 
+  //and manual execution. This makes the codebase easier to maintain and scale :)
   const allArgs = { args, games, Poker, waitingSeconds };
   const commandName = args.shift().toLowerCase();
 
