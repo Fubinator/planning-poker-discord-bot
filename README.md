@@ -17,6 +17,19 @@ cd planning-poker-discord-bot/
 npm install
 ```
 
+### Creating a bot
+
+* Make sure you're logged on to the Discord website.
+* Go to [Discord Developers Portal](https://discord.com/developers/applications).
+* Click on **new application** button in top right.
+* Give the name of the application and navigate to the __Bot__ tab.
+* Click on the **Add Bot** button.
+* Make sure that **Public Bot** is ticked.
+* Copy the **token** and put it in the [configration file](https://github.com/Fubinator/planning-poker-discord-bot#configuration).
+* Head over to the **OAuth2** tab. Select _bot_ in the **scopes** section and _Send Messages_ in the **Bot Permissions** section.
+* Copy the link it genrates and open it in your browser and add the bot to your desire server.
+* Once the bot added in the server you are good to go.
+
 ### Configuration
 
 After cloning the Repository and installing the dependencies, you need to copy the `.env.example` File to `.env` and add your Discord API Token to the environment variable `DISCORD_SECRET`
