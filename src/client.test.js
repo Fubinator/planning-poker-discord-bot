@@ -2,7 +2,7 @@ const pokerGame = require("./client");
 
 jest.useFakeTimers();
 
-it("should print welcome message", () => {
+it("should print game start / welcome message", () => {
   const mockedSend = jest.fn();
   const message = {
     author: { username: "" },
@@ -12,7 +12,10 @@ it("should print welcome message", () => {
     },
   };
   pokerGame.onMessage(message, 0);
-  expect(mockedSend.mock.calls[0][0]).toBe("Welcome to planning poker");
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Welcome/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Please/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/30 seconds/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/stop playing/);
 });
 
 it("should print first question message", () => {
@@ -25,7 +28,7 @@ it("should print first question message", () => {
     },
   };
   pokerGame.onMessage(message, 0);
-  expect(mockedSend.mock.calls[0][0]).toBe("First question: [QUESTION]");
+  expect(mockedSend.mock.calls[0][0]).toMatch(/First question:/);
 });
 
 it("should print addition message", () => {
@@ -38,9 +41,7 @@ it("should print addition message", () => {
     },
   };
   pokerGame.onMessage(message, 0);
-  expect(mockedSend.mock.calls[0][0]).toBe(
-    "Added 3 to your question [QUESTION]"
-  );
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Added 3 to your question/);
 });
 
 it("should print finishing message", () => {
@@ -53,5 +54,9 @@ it("should print finishing message", () => {
     },
   };
   pokerGame.onMessage(message, 0);
-  expect(mockedSend.mock.calls[0][0]).toBe("Planning Poker finished");
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Planning Poker finished/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(
+    /Here is an overview of your game:/
+  );
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Total Story Points: \d{1,}/);
 });

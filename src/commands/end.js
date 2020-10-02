@@ -11,18 +11,24 @@ module.exports = {
 
     const pokerGame = games.get(message.channel.id);
 
-    message.channel.send("Planning Poker finished");
-    message.channel.send("Here is an overview of your game:");
-
     let totalStoryPoints = 0;
+    const gameSummaryMessage = [];
     for (const question of pokerGame.questions) {
-      message.channel.send(
+      gameSummaryMessage.push(
         `Question: ${question.question} Story Points: ${question.storypoints}`
       );
       totalStoryPoints += question.storypoints;
     }
-
-    message.channel.send(`Total Story Points: ${totalStoryPoints}`);
+    // TODO: There should be some sort of check to make sure the following message doesn't exceed 2000 Characters
+    message.channel.send(
+      [
+        "Planning Poker finished",
+        "Here is an overview of your game:",
+        gameSummaryMessage.join("\n"),
+        "",
+        `Total Story Points: ${totalStoryPoints}`,
+      ].join("\n")
+    );
 
     pokerGame.finishGame();
     if (games.has(message.channel.id)) games.delete(message.channel.id);

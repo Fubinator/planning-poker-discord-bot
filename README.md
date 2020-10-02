@@ -19,7 +19,23 @@ npm install
 
 ### Configuration
 
-After cloning the Repository and installing the dependencies, you need to copy the `.env.example` File to `.env` and add your Discord API Token to the environment variable `DISCORD_SECRET`
+After cloning the Repository and installing the dependencies, you need to copy the `.env.example` File to `.env` and add your Discord API Token to the environment variable `DISCORD_SECRET` (_getting your API token is covered in the next section._)
+
+### Create a Bot app on Discord
+
+To run your own instance of **planning-poker-discord-bot** you will need to creat a bot app on Discord's Developer Portal.
+
+1. Go to the [Discord Developers Portal](https://discord.com/developers/applications) in your browser.
+2. Sign in with your Discord login details.
+3. In the top right of the page, click the button **"New Application"**.
+4. Enter a relevant name and click **"Create"**.
+5. From the panel on the left, select the menu option **"Bot"** then click on the button **"Add Bot"**.
+6. There will now be a _Token_ that is hidden, copy it and add it your `.env` file you created previously. The _Token_ is your `DISCORD_SECRET`.
+7. From the panel on the left, select the menu option **"OAuth2"**
+8. Give your bot the _bot_ scope with the _Send Messages_ permissions.
+9. Paste the link it generates into your browser, this links to the bots invitation portal where you can add it to a server you control.
+10. The link should look like: `https://discord.com/api/oauth2/authorize?client_id={YOUR_CLIENT_ID}&permissions=2048&scope=bot`
+11. Once the bot arrives in your server, you are ready to run the bot.
 
 ### Running the bot
 

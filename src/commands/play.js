@@ -16,19 +16,24 @@ module.exports = {
 
     const question = message.content.split(" ").splice(1).join(" ");
 
-    message.channel.send(`First question: ${question}`);
-    message.channel.send("Please provide your guesses");
+    message.channel.send(
+      `First question: ${question}\n` + "Please provide your guesses"
+    );
 
     pokerGame.playQuestion(question);
 
     setTimeout(() => {
-      message.channel.send("Time's up!");
-      message.channel.send(
-        "Please enter the number of storypoints with !storypoints [AMOUNT] when you finished discussing"
-      );
+      const answerAndResults = [];
       for (const answer of pokerGame.currentAnswers) {
-        message.channel.send(`${answer.user}: ${answer.points}`);
+        answerAndResults.push(`${answer.user}: ${answer.points}`);
       }
+      message.channel.send(
+        [
+          "Time's up!",
+          "Please enter the number of storypoints with !storypoints [AMOUNT] when you finished discussing",
+          answerAndResults.join("\n"),
+        ].join("\n")
+      );
     }, args.waitingSeconds);
-  }
+  },
 };

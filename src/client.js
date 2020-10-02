@@ -37,6 +37,7 @@ const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
     case "!play":
       client.commands.get("play").execute(message, { args, games, waitingSeconds });
       break;
+    case "!sp":
     case "!storypoints":
       client.commands.get("storypoints").execute(message, { args, games });
       break;
