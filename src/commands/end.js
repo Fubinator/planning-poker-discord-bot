@@ -14,11 +14,14 @@ module.exports = {
       totalStoryPoints += question.storypoints;
     }
     message.channel.send(
-      "Planning Poker finished\n" +
-        "**Here is an overview of your game:**\n" +
-        gameSummaryMessage.join("\n")
+      [
+        "Planning Poker finished",
+        "**Here is an overview of your game:**",
+        gameSummaryMessage.join("\n"),
+        "",
+        `**Total Story Points: ${totalStoryPoints}**`,
+      ].join("\n")
     );
-    message.channel.send(`**Total Story Points: ${totalStoryPoints}**`);
 
     Poker.finishGame();
     if (games.has(message.channel.id)) games.delete(message.channel.id);
