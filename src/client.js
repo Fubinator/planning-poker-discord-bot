@@ -3,8 +3,6 @@ const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
 
-const Poker = require("./poker");
-
 const client = new Client();
 client.commands = new Collection();
 
