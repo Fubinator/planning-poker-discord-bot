@@ -12,7 +12,7 @@ const ascii1 =`
                                                            /$$  \\ $$                                                                                           
                                                           |  $$$$$$/                                                                                           
                                                            \\______/                                                                                            
-`
+`;
 module.exports = {
   name: "start",
   description: "start command",
@@ -35,7 +35,7 @@ module.exports = {
         "Please start your first round with !play [QUESTION]",
         "For each round you've got 30 seconds to write your guessed number of story points via dm to the bot",
         "You can stop playing by typing !end",
-      ].join("\n");
+      ].join("\n")
     );
     return;
   },
