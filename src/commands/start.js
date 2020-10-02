@@ -33,5 +33,5 @@ module.exports = {
     message.channel.send("For each round you've got 30 seconds to write your guessed number of story points via dm to the bot");
     message.channel.send("You can stop playing by typing !end");
     return;
-    },
+  },
 };
