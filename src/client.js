@@ -10,6 +10,7 @@ client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".js"));
+const prefix = '!';
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
@@ -25,30 +26,20 @@ client.on("ready", () => {
 const timeoutInSeconds = 30 * 1000;
 
 const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
-  if (message.author.username === process.env.BOT_NAME) return;
+  if (message.author.bot || !message.content.startsWith(prefix)) return;
 
-  const args = message.content.trim().split(/ +/);
+  const args = message.content.slice(prefix.length).trim().split(/ +/);
+
+  const allArgs = { args, games, Poker, waitingSeconds };
   const command = args.shift().toLowerCase();
 
-  switch (command) {
-    case "!start":
-      client.commands.get("start").execute(message, { args, games });
-      break;
-    case "!play":
-      client.commands.get("play").execute(message, { args, Poker, waitingSeconds });
-      break;
-    case "!sp":
-    case "!storypoints":
-      client.commands.get("storypoints").execute(message, { args, Poker });
-      break;
-    case "!end":
-      client.commands.get("end").execute(message, { args, Poker, games });
-      break;
-    case "!help":
-      client.commands.get("help").execute(message);
-      break;
-    default:
-      break;
+  if (!client.commands.has(command)) return;
+
+  try {
+    client.commands.get(command).execute(message, allArgs);
+  } catch (error) {
+    console.error(error);
+    message.reply('An error occured while trying to execute that command!');
   }
 
   if (message.channel.type === "dm" && Poker.isQuestionRunning) {
