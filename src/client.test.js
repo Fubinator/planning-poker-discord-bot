@@ -28,7 +28,7 @@ it("should print first question message", () => {
     },
   };
   pokerGame.onMessage(message, 0);
-  expect(mockedSend.mock.calls[0][0]).toBe("First question: [QUESTION]");
+  expect(mockedSend.mock.calls[0][0]).toMatch(/First question:/);
 });
 
 it("should print addition message", () => {
@@ -41,9 +41,7 @@ it("should print addition message", () => {
     },
   };
   pokerGame.onMessage(message, 0);
-  expect(mockedSend.mock.calls[0][0]).toBe(
-    "Added 3 to your question [QUESTION]"
-  );
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Added 3 to your question/);
 });
 
 it("should print finishing message", () => {
