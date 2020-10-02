@@ -2,7 +2,7 @@
 module.exports = {
   name: "storypoints",
   description: "story points command",
-  aliases: ['sp', 'storyp', 'stp'],
+  aliases: ["sp", "storyp", "stp"],
   execute(message, args) {
     const { Poker } = args;
     if (!Poker.isQuestionRunning)

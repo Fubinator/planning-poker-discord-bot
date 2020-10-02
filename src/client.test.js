@@ -2,7 +2,7 @@ const pokerGame = require("./client");
 
 jest.useFakeTimers();
 
-describe('Main tests', () => {
+describe("Main tests", () => {
   it("should print game start / welcome message", () => {
     const mockedSend = jest.fn();
     const message = {
@@ -63,7 +63,7 @@ describe('Main tests', () => {
   });
 });
 
-describe('aliases', () => {
+describe("aliases", () => {
   it("should print game start / welcome message via alias", () => {
     const mockedSend = jest.fn();
     const message = {
@@ -122,5 +122,5 @@ describe('aliases', () => {
     );
     expect(mockedSend.mock.calls[0][0]).toMatch(/Total Story Points: \d{1,}/);
   });
-})
+});
 
