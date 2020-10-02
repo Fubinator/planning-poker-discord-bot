@@ -29,21 +29,40 @@ npm start
 
 ## Playing the game
 
+### What is Planning Poker?
+
+Planning Poker is a gamified estimating and planning technique used frequently in agile teams to get an idea of how long certain task will take. A short video explanation can be [found here.](https://www.youtube.com/watch?v=TxSzo3lwwWQ)
+
 ### Starting
 
-To start playing, go to a channel where you want to play and type `!start`. The bot will give you further instructions.
+Once your instance of the bot is added to your chosen server, gather your participants in text channel you wish to play in. It may be a good idea to make a channel specifically for playing planning poker.
+
+Once every has there focus in the right channel, to start playing, type `!start`. The bot will will commence the game.
 
 ### Running a question
 
-To run a question, just type `!play [QUESTION]`. When the bot tells you to provide your guesses, you can send the bot a DM. After 30 seconds the question will be closed automatically and displays the provided answers.
+To put forward a user story or question to consider, just type `!play` followed by the question or feature to be considered. All players will then have 30 seconds to send their estimation to the bot via direct message.
+
+After 30 seconds the bot will automatically close the question and display all players estimations in the text channel the game was started in.
+
+If there are conflicting estimations, players will then have time to discuss there reasoning for the response they gave.
+
+#### Example
+
+`!play How long will it take to do implement x?`
 
 ### Finishing a question
 
-After you decided on an amount of storypoints for your user story, you can type `!storypoints [AMOUNT]` to tell the bot that the question has finished.
+After a consensus has been reached and the team has decided on an amount of storypoints / ideal days / etc.. for the proposed user story, you can type `!storypoints` followed by the agreed amount of effort to tell the bot that the question has finished.
+
+#### Example
+
+`!storypoints 15`
 
 ### Ending the game
 
-To end the game, just type `!end`. The bot will end the game and send all questions with the amount of given story points to channel.
+After all user stories have had an agreed upon amount of storypoints assigned to them
+you can then finish the game by typing `!end`. The bot will end the game and send all questions with the amount of given story points to the channel the game was started in.
 
 ## License
 
