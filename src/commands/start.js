@@ -14,13 +14,14 @@ module.exports = {
       return;
     }
     games.set(message.channel.id, true);
-    message.channel.send("Welcome to planning poker");
-    message.channel.send("Please start your first round with !play [QUESTION]");
     message.channel.send(
-      "For each round you've got 30 seconds to write your guessed number of story points via dm to the bot"
+      [
+        "Welcome to planning poker",
+        "Please start your first round with !play [QUESTION]",
+        "For each round you've got 30 seconds to write your guessed number of story points via dm to the bot",
+        "You can stop playing by typing !end",
+      ].join("\n")
     );
-    message.channel.send("You can stop playing by typing !end");
-
     return;
   },
 };
