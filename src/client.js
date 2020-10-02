@@ -10,7 +10,7 @@ client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".js"));
-const prefix = '!';
+const prefix = "!";
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
@@ -46,7 +46,7 @@ const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
     command.execute(message, allArgs);
   } catch (error) {
     console.error(error);
-    message.reply('An error occured while trying to execute that command!');
+    message.reply("An error occured while trying to execute that command!");
   }
 
   if (message.channel.type === "dm" && Poker.isQuestionRunning) {
