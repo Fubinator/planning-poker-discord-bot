@@ -26,17 +26,24 @@ client.on("ready", () => {
 const timeoutInSeconds = 30 * 1000;
 
 const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
+  //ignore the message if it's a message from the bot or it doesn't start with !
   if (message.author.bot || !message.content.startsWith(prefix)) return;
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
-
+  //allArgs is an object including arguments required by *any* command. This way, we can 
+  //execute commands on line 43 dynamically, instead of of switch/case and manual execution
+  //this makes the codebase easier to maintain and scale :)
   const allArgs = { args, games, Poker, waitingSeconds };
-  const command = args.shift().toLowerCase();
+  const commandName = args.shift().toLowerCase();
 
-  if (!client.commands.has(command)) return;
+  //get the command based on the raw command name, or any one of its aliases
+  const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
+  if (!command) return;
+
+  //execute the command
   try {
-    client.commands.get(command).execute(message, allArgs);
+    command.execute(message, allArgs);
   } catch (error) {
     console.error(error);
     message.reply('An error occured while trying to execute that command!');

@@ -2,6 +2,7 @@
 module.exports = {
   name: "start",
   description: "start command",
+  aliases: ['s', 'st', 'strt'],
   execute(message, args) {
     const { games } = args;
 
