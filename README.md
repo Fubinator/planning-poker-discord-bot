@@ -63,6 +63,10 @@ After a consensus has been reached and the team has decided on an amount of stor
 
 After all user stories have had an agreed upon amount of storypoints assigned to them you can then finish the game by typing `!end`. The bot will end the game and send all questions with the amount of given story points to the channel the game was started in.
 
+## Contributing
+
+Falls du etwas beitragen möchtest, have a look [here](CONTRIBUTING.md).
+
 ## License
 
 MIT
