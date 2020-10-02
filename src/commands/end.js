@@ -13,6 +13,7 @@ module.exports = {
       );
       totalStoryPoints += question.storypoints;
     }
+    // TODO: There should be some sort of check to make sure the following message doesn't exceed 2000 Characters
     message.channel.send(
       [
         "Planning Poker finished",
