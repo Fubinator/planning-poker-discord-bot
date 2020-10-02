@@ -12,9 +12,9 @@ module.exports = {
     message.channel.send(
       [
         "Welcome to planning poker",
-        "Please start your first round with `!play [QUESTION]`",
+        "Please start your first round with !play [QUESTION]",
         "For each round you've got 30 seconds to write your guessed number of story points via dm to the bot",
-        "You can stop playing by typing `!end`",
+        "You can stop playing by typing !end",
       ].join("\n")
     );
     return;

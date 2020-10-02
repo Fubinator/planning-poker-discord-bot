@@ -24,7 +24,7 @@ module.exports = {
       message.channel.send(
         [
           "Time's up!",
-          "Please enter the number of storypoints with `!storypoints [AMOUNT]` when you finished discussing",
+          "Please enter the number of storypoints with !storypoints [AMOUNT] when you finished discussing",
           answerAndResults.join("\n"),
         ].join("\n")
       );

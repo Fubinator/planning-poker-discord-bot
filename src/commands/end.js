@@ -17,10 +17,10 @@ module.exports = {
     message.channel.send(
       [
         "Planning Poker finished",
-        "**Here is an overview of your game:**",
+        "Here is an overview of your game:",
         gameSummaryMessage.join("\n"),
         "",
-        `**Total Story Points: ${totalStoryPoints}**`,
+        `Total Story Points: ${totalStoryPoints}`,
       ].join("\n")
     );
 
