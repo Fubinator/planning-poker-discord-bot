@@ -1,4 +1,5 @@
-const ascii1=`
+/* eslint-disable linebreak-style */
+const ascii1 = `
 \`\`\`
 _____ _             _         
 |  _  | |___ ___ ___|_|___ ___ 
@@ -6,7 +7,7 @@ _____ _             _
 |__|  |_|__,|_|_|_|_|_|_|_|_  |
                           |___|
 \`\`\`
-`
+`;
 const ascii2 = `
 \`\`\`
 _____     _              _____     _   
@@ -15,7 +16,6 @@ _____     _              _____     _
 |__|  |___|_,_|___|_|    |_____|___|_|                           
 \`\`\`
 `;
-/* eslint-disable linebreak-style */
 module.exports = {
 	name: "start",
 	description: "start command",
@@ -26,8 +26,8 @@ module.exports = {
 			return;
 		}
 		games.set(message.channel.id, true);
-    message.channel.send(ascii1);
-    message.channel.send(ascii2);
+		message.channel.send(ascii1);
+		message.channel.send(ascii2);
 		message.channel.send("Welcome to planning poker");
 		message.channel.send("Please start your first round with !play [QUESTION]");
 		message.channel.send(
