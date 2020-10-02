@@ -4,6 +4,11 @@ module.exports = {
   description: "start command",
   execute(message, args) {
     const { games } = args;
+
+    if (message.channel.name) {
+      console.log(`Planning poker is been playing in channel: ${message.channel.name}`);
+    }
+
     if (games.has(message.channel.id)) {
       message.channel.send("Game is already in progress in this channel!");
       return;
