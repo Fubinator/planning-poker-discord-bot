@@ -65,7 +65,7 @@ After all user stories have had an agreed upon amount of storypoints assigned to
 
 ## Contributing
 
-Falls du etwas beitragen möchtest, have a look [here](CONTRIBUTING.md).
+If you want to contribute, have a look [here](CONTRIBUTING.md).
 
 ## License
 
