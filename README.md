@@ -53,7 +53,7 @@ If there are conflicting estimations, players will then have time to discuss the
 
 ### Finishing a question
 
-After a consensus has been reached and the team has decided on an amount of storypoints / ideal days / etc.. for the proposed user story, you can type `!storypoints` followed by the agreed amount of effort to tell the bot that the question has finished.
+After a consensus has been reached and the team has decided on an amount of storypoints / ideal days / etc. for the proposed user story, you can type `!storypoints` followed by the agreed amount of effort to tell the bot that the question has finished.
 
 #### Example
 
@@ -61,8 +61,7 @@ After a consensus has been reached and the team has decided on an amount of stor
 
 ### Ending the game
 
-After all user stories have had an agreed upon amount of storypoints assigned to them
-you can then finish the game by typing `!end`. The bot will end the game and send all questions with the amount of given story points to the channel the game was started in.
+After all user stories have had an agreed upon amount of storypoints assigned to them you can then finish the game by typing `!end`. The bot will end the game and send all questions with the amount of given story points to the channel the game was started in.
 
 ## License
 
