@@ -1,0 +1,15 @@
+{
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${default}"
+            ],
+            "defines": [],
+            "cStandard": "gnu18",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/local/bin/gcc-10"
+        }
+    ],
+    "version": 4
+}

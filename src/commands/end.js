@@ -5,6 +5,13 @@ module.exports = {
   execute(message, args) {
     const { Poker, games } = args;
 
+    if (!games.has(message.channel.id)) {
+      message.channel.send("Game is not started yet, !start to play");
+      return;
+    }
+
+    games.set(message.channel.id, false);
+
     let totalStoryPoints = 0;
     const gameSummaryMessage = [];
     for (const question of Poker.questions) {
@@ -13,6 +20,8 @@ module.exports = {
       );
       totalStoryPoints += question.storypoints;
     }
+
+
     // TODO: There should be some sort of check to make sure the following message doesn't exceed 2000 Characters
     message.channel.send(
       [

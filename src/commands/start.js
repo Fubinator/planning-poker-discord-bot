@@ -13,7 +13,9 @@ module.exports = {
       message.channel.send("Game is already in progress in this channel!");
       return;
     }
+
     games.set(message.channel.id, true);
+
     message.channel.send(
       [
         "Welcome to planning poker",

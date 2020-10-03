@@ -3,10 +3,15 @@ module.exports = {
   name: "play",
   description: "play command",
   execute(message, args) {
-    const { Poker } = args;
+    const { Poker, games } = args;
 
     if (Poker.isQuestionRunning)
       return message.channel.send("There is already a question in progress.");
+
+    if (!games.has(message.channel.id)) {
+      message.channel.send("Game is not started yet, !start to play");
+      return;
+    }
 
     const question = message.content.split(" ").splice(1).join(" ");
 

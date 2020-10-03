@@ -3,7 +3,16 @@ module.exports = {
   name: "storypoints",
   description: "story points command",
   execute(message, args) {
-    const { Poker } = args;
+    const { Poker, games } = args;
+
+
+    if (!games.has(message.channel.id)) {
+      message.channel.send("Game is not started yet, !start to play");
+      return;
+    }
+
+
+
     if (!Poker.isQuestionRunning)
       return message.channel.send(
         "You are currently not answering a question."
