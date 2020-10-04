@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-const ascii1 =`
+const ascii1 = `
 .
 /$$$$$$$  /$$                               /$$                           /$$$$$$$           /$$                                 /$$$$$$$              /$$    
 | $$__  $$| $$                              |__/                          | $$__  $$         | $$                                | $$__  $$            | $$    
@@ -17,16 +17,19 @@ module.exports = {
   name: "start",
   description: "start command",
   execute(message, args) {
-    const { games } = args;
+    const { Poker, games } = args;
 
     if (message.channel.name) {
-      console.log(`Planning poker is been playing in channel: ${message.channel.name}`);
+      console.log(
+        `Planning poker is been playing in channel: ${message.channel.name}`
+      );
     }
 
-    if (games.has(message.channel.id)) {
+    if (Poker.isGameRunning && games.has(message.channel.id)) {
       message.channel.send("Game is already in progress in this channel!");
       return;
     }
+    Poker.startGame();
     games.set(message.channel.id, true);
     console.log(ascii1);
     message.channel.send(

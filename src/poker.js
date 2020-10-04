@@ -1,4 +1,5 @@
 const Poker = {
+  isGameRunning: false,
   isQuestionRunning: false,
   currentAnswers: [],
   currentQuestion: undefined,
@@ -24,8 +25,13 @@ const Poker = {
     this.isQuestionRunning = false;
   },
 
+  startGame() {
+    this.isGameRunning = true;
+  },
+
   finishGame() {
     this.questions = [];
+    this.isGameRunning = false;
   },
 };
 

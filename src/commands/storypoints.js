@@ -4,6 +4,11 @@ module.exports = {
   description: "story points command",
   execute(message, args) {
     const { Poker } = args;
+    if (!Poker.isGameRunning) {
+      return message.channel.send(
+        "You must !start a game before assigning storypoints."
+      );
+    }
     if (!Poker.isQuestionRunning)
       return message.channel.send(
         "You are currently not answering a question."

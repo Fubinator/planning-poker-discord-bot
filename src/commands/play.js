@@ -5,6 +5,12 @@ module.exports = {
   execute(message, args) {
     const { Poker } = args;
 
+    if (!Poker.isGameRunning) {
+      return message.channel.send(
+        "You must !start a game before asking a question."
+      );
+    }
+
     if (Poker.isQuestionRunning)
       return message.channel.send("There is already a question in progress.");
 

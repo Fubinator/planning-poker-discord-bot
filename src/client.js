@@ -9,7 +9,9 @@ const client = new Client();
 client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, "commands");
-const commandFiles = fs.readdirSync(commandsPath).filter((file) => file.endsWith(".js"));
+const commandFiles = fs
+  .readdirSync(commandsPath)
+  .filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
@@ -19,7 +21,9 @@ for (const file of commandFiles) {
 const games = new Collection();
 
 client.on("ready", () => {
-  console.log(`Bot started on HTTP version ${client.options.http.version} on ${client.readyAt}`);
+  console.log(
+    `Bot started on HTTP version ${client.options.http.version} on ${client.readyAt}`
+  );
 });
 
 const timeoutInSeconds = 30 * 1000;
@@ -32,10 +36,12 @@ const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
 
   switch (command) {
     case "!start":
-      client.commands.get("start").execute(message, { args, games });
+      client.commands.get("start").execute(message, { args, Poker, games });
       break;
     case "!play":
-      client.commands.get("play").execute(message, { args, Poker, waitingSeconds });
+      client.commands
+        .get("play")
+        .execute(message, { args, Poker, waitingSeconds });
       break;
     case "!sp":
     case "!storypoints":
