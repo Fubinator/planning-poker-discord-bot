@@ -15,7 +15,7 @@ module.exports = {
     const gameSummaryMessage = [];
     for (const question of pokerGame.questions) {
       gameSummaryMessage.push(
-        `Question: ${question.question} Story Points: ${question.storypoints}`
+        `* Assigned ${question.storypoints} to the question: ${question.question}`
       );
       totalStoryPoints += question.storypoints;
     }
@@ -23,7 +23,7 @@ module.exports = {
     message.channel.send(
       [
         "Planning Poker finished",
-        "Here is an overview of your game:",
+        "Here is an overview of your game:\n",
         gameSummaryMessage.join("\n"),
         "",
         `Total Story Points: ${totalStoryPoints}`,

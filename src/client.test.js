@@ -14,9 +14,12 @@ describe("Main tests", () => {
     };
     pokerGame.onMessage(message, 0);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Welcome/);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/Please/);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/30 seconds/);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/stop playing/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/Start/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/> !play/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/You'll/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/\(an/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/Stop/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/> !end/);
   });
 
   it("should print first question message", () => {
@@ -29,7 +32,7 @@ describe("Main tests", () => {
       },
     };
     pokerGame.onMessage(message, 0);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/First question:/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/Current question:/);
   });
 
   it("should print addition message", () => {
@@ -42,7 +45,7 @@ describe("Main tests", () => {
       },
     };
     pokerGame.onMessage(message, 0);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/Added 3 to your question/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/Assigned 3 to the question/);
   });
 
   it("should print finishing message", () => {
@@ -75,9 +78,12 @@ describe("aliases", () => {
     };
     pokerGame.onMessage(message, 0);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Welcome/);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/Please/);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/30 seconds/);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/stop playing/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/Start/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/> !play/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/You'll/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/\(an/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/Stop/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/> !end/);
   });
 
   it("should print first question message", () => {
@@ -90,7 +96,7 @@ describe("aliases", () => {
       },
     };
     pokerGame.onMessage(message, 0);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/First question:/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/Current question:/);
   });
 
   it("should print addition message via storypoints alias", () => {
@@ -103,7 +109,7 @@ describe("aliases", () => {
       },
     };
     pokerGame.onMessage(message, 0);
-    expect(mockedSend.mock.calls[0][0]).toMatch(/Added 10 to your question/);
+    expect(mockedSend.mock.calls[0][0]).toMatch(/Assigned 10 to the question:/);
   });
 
   it("should print finishing message", () => {
@@ -123,4 +129,3 @@ describe("aliases", () => {
     expect(mockedSend.mock.calls[0][0]).toMatch(/Total Story Points: \d{1,}/);
   });
 });
-
