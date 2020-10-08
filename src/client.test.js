@@ -13,9 +13,12 @@ it("should print game start / welcome message", () => {
   };
   pokerGame.onMessage(message, 0);
   expect(mockedSend.mock.calls[0][0]).toMatch(/Welcome/);
-  expect(mockedSend.mock.calls[0][0]).toMatch(/Please/);
-  expect(mockedSend.mock.calls[0][0]).toMatch(/30 seconds/);
-  expect(mockedSend.mock.calls[0][0]).toMatch(/stop playing/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Start/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/> \!play/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/You'll/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/\(an/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Stop/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/> \!end/);
 });
 
 it("should print first question message", () => {
@@ -28,7 +31,7 @@ it("should print first question message", () => {
     },
   };
   pokerGame.onMessage(message, 0);
-  expect(mockedSend.mock.calls[0][0]).toMatch(/First question:/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Current question:/);
 });
 
 it("should print addition message", () => {
@@ -41,7 +44,7 @@ it("should print addition message", () => {
     },
   };
   pokerGame.onMessage(message, 0);
-  expect(mockedSend.mock.calls[0][0]).toMatch(/Added 3 to your question/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/Assigned 3 to the question/);
 });
 
 it("should print finishing message", () => {
