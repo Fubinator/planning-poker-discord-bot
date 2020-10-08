@@ -1,6 +1,7 @@
 module.exports = {
   name: "help",
   description: "help command",
+  aliases: ["/?", "h"],
   execute(message) {
     message.channel.send(
       [
