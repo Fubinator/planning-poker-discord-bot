@@ -13,7 +13,10 @@ module.exports = {
 
     if (!isNaN(storypoints)) {
       message.channel.send(
-        `Added ${storypoints} to your question ${Poker.currentQuestion}`
+        [
+          `Assigned ${storypoints} to the question: ${Poker.currentQuestion}`,
+          "`!play` another or `!end` the game",
+        ].join("\n")
       );
 
       Poker.finishQuestion(storypoints);

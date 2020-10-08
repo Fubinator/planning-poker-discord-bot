@@ -9,15 +9,15 @@ module.exports = {
     const gameSummaryMessage = [];
     for (const question of Poker.questions) {
       gameSummaryMessage.push(
-        `Question: ${question.question} Story Points: ${question.storypoints}`
+        `* Assigned ${question.storypoints} to the question: ${question.question}`
       );
       totalStoryPoints += question.storypoints;
     }
     // TODO: There should be some sort of check to make sure the following message doesn't exceed 2000 Characters
     message.channel.send(
       [
-        "Planning Poker finished",
-        "Here is an overview of your game:",
+        "Planning Poker has ended.",
+        "Here is an overview of your game:\n",
         gameSummaryMessage.join("\n"),
         "",
         `Total Story Points: ${totalStoryPoints}`,
