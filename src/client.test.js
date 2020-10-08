@@ -14,11 +14,11 @@ it("should print game start / welcome message", () => {
   pokerGame.onMessage(message, 0);
   expect(mockedSend.mock.calls[0][0]).toMatch(/Welcome/);
   expect(mockedSend.mock.calls[0][0]).toMatch(/Start/);
-  expect(mockedSend.mock.calls[0][0]).toMatch(/> \!play/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/> !play/);
   expect(mockedSend.mock.calls[0][0]).toMatch(/You'll/);
   expect(mockedSend.mock.calls[0][0]).toMatch(/\(an/);
   expect(mockedSend.mock.calls[0][0]).toMatch(/Stop/);
-  expect(mockedSend.mock.calls[0][0]).toMatch(/> \!end/);
+  expect(mockedSend.mock.calls[0][0]).toMatch(/> !end/);
 });
 
 it("should print first question message", () => {
