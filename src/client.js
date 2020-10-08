@@ -3,8 +3,6 @@ const { Client, Collection } = require("discord.js");
 const fs = require("fs");
 const path = require("path");
 
-const Poker = require("./poker");
-
 const client = new Client();
 client.commands = new Collection();
 
@@ -35,24 +33,20 @@ const onMessage = (message, waitingSeconds = timeoutInSeconds) => {
       client.commands.get("start").execute(message, { args, games });
       break;
     case "!play":
-      client.commands.get("play").execute(message, { args, Poker, waitingSeconds });
+      client.commands.get("play").execute(message, { args, games, waitingSeconds });
       break;
     case "!sp":
     case "!storypoints":
-      client.commands.get("storypoints").execute(message, { args, Poker });
+      client.commands.get("storypoints").execute(message, { args, games });
       break;
     case "!end":
-      client.commands.get("end").execute(message, { args, Poker, games });
+      client.commands.get("end").execute(message, { args, games });
       break;
     case "!help":
       client.commands.get("help").execute(message);
       break;
     default:
       break;
-  }
-
-  if (message.channel.type === "dm" && Poker.isQuestionRunning) {
-    Poker.addAnswer(message.author.username, message.content);
   }
 };
 

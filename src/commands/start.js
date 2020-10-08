@@ -1,5 +1,7 @@
+const Poker = require("../poker");
+
 /* eslint-disable linebreak-style */
-const ascii1 =`
+const ascii1 = `
 .
 /$$$$$$$  /$$                               /$$                           /$$$$$$$           /$$                                 /$$$$$$$              /$$    
 | $$__  $$| $$                              |__/                          | $$__  $$         | $$                                | $$__  $$            | $$    
@@ -13,6 +15,7 @@ const ascii1 =`
                                                           |  $$$$$$/                                                                                           
                                                            \\______/                                                                                            
 `;
+
 module.exports = {
   name: "start",
   description: "start command",
@@ -27,16 +30,18 @@ module.exports = {
       message.channel.send("Game is already in progress in this channel!");
       return;
     }
-    games.set(message.channel.id, true);
+
     console.log(ascii1);
+    games.set(message.channel.id, new Poker());
+
     message.channel.send(
       [
         "Welcome to planning poker",
         "Please start your first round with !play [QUESTION]",
         "For each round you've got 30 seconds to write your guessed number of story points via dm to the bot",
-        "You can stop playing by typing !end",
+        "You can stop playing by typing !end"
       ].join("\n")
     );
     return;
-  },
+  }
 };

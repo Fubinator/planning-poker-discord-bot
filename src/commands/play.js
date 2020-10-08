@@ -3,9 +3,15 @@ module.exports = {
   name: "play",
   description: "play command",
   execute(message, args) {
-    const { Poker } = args;
+    const { games } = args;
 
-    if (Poker.isQuestionRunning)
+    if (!games.has(message.channel.id)) {
+      return message.channel.send("There is currently no game in progress. Start a game by using the !start command.");
+    }
+
+    const pokerGame = games.get(message.channel.id);
+
+    if (pokerGame.isQuestionRunning)
       return message.channel.send("There is already a question in progress.");
 
     const question = message.content.split(" ").splice(1).join(" ");
@@ -14,11 +20,11 @@ module.exports = {
       `First question: ${question}\n` + "Please provide your guesses"
     );
 
-    Poker.playQuestion(question);
+    pokerGame.playQuestion(question);
 
     setTimeout(() => {
       const answerAndResults = [];
-      for (const answer of Poker.currentAnswers) {
+      for (const answer of pokerGame.currentAnswers) {
         answerAndResults.push(`${answer.user}: ${answer.points}`);
       }
       message.channel.send(

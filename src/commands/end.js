@@ -3,11 +3,17 @@ module.exports = {
   name: "end",
   description: "end command",
   execute(message, args) {
-    const { Poker, games } = args;
+    const { games } = args;
+
+    if (!games.has(message.channel.id)) {
+      return message.channel.send("There is currently no game in progress. Start a game by using the !start command.");
+    }
+
+    const pokerGame = games.get(message.channel.id);
 
     let totalStoryPoints = 0;
     const gameSummaryMessage = [];
-    for (const question of Poker.questions) {
+    for (const question of pokerGame.questions) {
       gameSummaryMessage.push(
         `Question: ${question.question} Story Points: ${question.storypoints}`
       );
@@ -24,7 +30,7 @@ module.exports = {
       ].join("\n")
     );
 
-    Poker.finishGame();
+    pokerGame.finishGame();
     if (games.has(message.channel.id)) games.delete(message.channel.id);
 
     return;
