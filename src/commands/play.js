@@ -18,7 +18,7 @@ module.exports = {
     const question = message.content.split(" ").splice(1).join(" ");
 
     message.channel.send(
-      `First question: ${question}\n` + "Please provide your guesses"
+      `Current question: ${question}\n` + "Please provide your estimates"
     );
 
     pokerGame.playQuestion(question);
@@ -26,13 +26,14 @@ module.exports = {
     setTimeout(() => {
       const answerAndResults = [];
       for (const answer of pokerGame.currentAnswers) {
-        answerAndResults.push(`${answer.user}: ${answer.points}`);
+        answerAndResults.push(`${answer.user} estimated: ${answer.points}`);
       }
       message.channel.send(
         [
-          "Time's up!",
-          "Please enter the number of storypoints with !storypoints [AMOUNT] when you finished discussing",
-          answerAndResults.join("\n"),
+          "Time's up! Discuss the estimates provided and then submit the final story points for the question with:",
+          "> !storypoints <points>\n",
+          "The estimates I received were as follows:\n" +
+            answerAndResults.join("\n"),
         ].join("\n")
       );
     }, args.waitingSeconds);
