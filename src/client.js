@@ -1,5 +1,11 @@
 /* eslint-disable indent */
-const { Client, Collection } = require("discord.js");
+const {
+  Client,
+  Collection,
+  GatewayIntentBits,
+  Events,
+  Partials,
+} = require("discord.js");
 const fs = require("fs");
 const path = require("path");
 
@@ -19,7 +25,16 @@ const ascii1 = `
                                                            \\______/                                                                                            
 `;
 
-const client = new Client();
+const client = new Client({
+  intents: [
+    GatewayIntentBits.DirectMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+  ],
+  partials: [Partials.Channel],
+});
 client.commands = new Collection();
 
 const commandsPath = path.join(__dirname, "commands");
@@ -37,9 +52,7 @@ const games = new Collection();
 
 client.on("ready", () => {
   console.log(ascii1);
-  console.log(
-    `Bot started on HTTP version ${client.options.http.version} on ${client.readyAt}`
-  );
+  console.log(`Bot started on ${client.readyAt}`);
 });
 
 const timeoutInSeconds = 30 * 1000;
@@ -48,7 +61,7 @@ const onMessage = async (message, waitingSeconds = timeoutInSeconds) => {
   //ignore the message if it's a message from the bot or it doesn't start with !
   if (message.author.bot) return;
 
-  if (message.channel.type === "dm") {
+  if (message.guildId === null) {
     const game = games.find((game) =>
       game.users.some((user) => user.id === message.author.id)
     );
@@ -83,9 +96,9 @@ const onMessage = async (message, waitingSeconds = timeoutInSeconds) => {
   }
 };
 
-client.on("message", onMessage);
+client.on(Events.MessageCreate, onMessage);
 
-client.on("messageReactionAdd", (messageReaction, user) => {
+client.on(Events.MessageReactionAdd, (messageReaction, user) => {
   if (
     messageReaction.message.content.indexOf("Welcome to planning poker.") !== -1
   ) {
@@ -94,7 +107,7 @@ client.on("messageReactionAdd", (messageReaction, user) => {
   }
 });
 
-client.on("messageReactionRemove", (messageReaction, user) => {
+client.on(Events.MessageReactionRemove, (messageReaction, user) => {
   if (
     messageReaction.message.content.indexOf("Welcome to planning poker.") !== -1
   ) {
