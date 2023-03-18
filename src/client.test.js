@@ -10,6 +10,9 @@ describe("Main tests", () => {
       content: "!start",
       channel: {
         send: mockedSend,
+        lastMessage: {
+          react: jest.fn(),
+        },
       },
     };
     pokerGame.onMessage(message, 0);
@@ -29,6 +32,9 @@ describe("Main tests", () => {
       content: "!play [QUESTION]",
       channel: {
         send: mockedSend,
+        lastMessage: {
+          react: jest.fn(),
+        },
       },
     };
     pokerGame.onMessage(message, 0);
@@ -42,6 +48,9 @@ describe("Main tests", () => {
       content: "!storypoints 3",
       channel: {
         send: mockedSend,
+        lastMessage: {
+          react: jest.fn(),
+        },
       },
     };
     pokerGame.onMessage(message, 0);
@@ -55,6 +64,9 @@ describe("Main tests", () => {
       content: "!end",
       channel: {
         send: mockedSend,
+        lastMessage: {
+          react: jest.fn(),
+        },
       },
     };
     pokerGame.onMessage(message, 0);
@@ -74,6 +86,9 @@ describe("aliases", () => {
       content: "!s",
       channel: {
         send: mockedSend,
+        lastMessage: {
+          react: jest.fn(),
+        },
       },
     };
     pokerGame.onMessage(message, 0);
@@ -93,6 +108,9 @@ describe("aliases", () => {
       content: "!p [QUESTION]",
       channel: {
         send: mockedSend,
+        lastMessage: {
+          react: jest.fn(),
+        },
       },
     };
     pokerGame.onMessage(message, 0);
@@ -106,6 +124,9 @@ describe("aliases", () => {
       content: "!sp 10",
       channel: {
         send: mockedSend,
+        lastMessage: {
+          react: jest.fn(),
+        },
       },
     };
     pokerGame.onMessage(message, 0);
@@ -119,6 +140,9 @@ describe("aliases", () => {
       content: "!end",
       channel: {
         send: mockedSend,
+        lastMessage: {
+          react: jest.fn(),
+        },
       },
     };
     pokerGame.onMessage(message, 0);
