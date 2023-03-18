@@ -4,6 +4,15 @@ class Poker {
     this.currentAnswers = [];
     this.currentQuestion = undefined;
     this.questions = [];
+    this.users = [];
+  }
+
+  addUser(userId) {
+    this.users.push(userId);
+  }
+
+  removeUser(userId) {
+    this.users = this.users.filter((user) => user !== userId);
   }
 
   playQuestion(question) {
