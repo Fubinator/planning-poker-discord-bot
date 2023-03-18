@@ -48,6 +48,16 @@ const onMessage = async (message, waitingSeconds = timeoutInSeconds) => {
   //ignore the message if it's a message from the bot or it doesn't start with !
   if (message.author.bot) return;
 
+  if (message.channel.type === "dm") {
+    const game = games.find((game) =>
+      game.users.some((user) => user.id === message.author.id)
+    );
+
+    if (game && game.isQuestionRunning) {
+      game.addAnswer(message.author.username, message.content);
+    }
+  }
+
   const args = message.content.slice(prefix.length).trim().split(/ +/);
   //allArgs is an object including arguments required by *any* command. This way, we can
   //execute commands dynamically via command.execute(message, allArgs), instead of switch/case
