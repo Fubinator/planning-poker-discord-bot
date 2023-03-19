@@ -7,10 +7,13 @@ import {
   Message,
   User,
 } from "discord.js";
-import fs from "fs";
-import path from "path";
 import { Poker } from "./poker";
 import { Command } from "./commands/command";
+import { StartCommand } from "./commands/start";
+import { EndCommand } from "./commands/end";
+import { HelpCommand } from "./commands/help";
+import { StorypointCommand } from "./commands/storypoints";
+import { PlayCommand } from "./commands/play";
 
 /* eslint-disable linebreak-style */
 const ascii1 = `
@@ -28,7 +31,9 @@ const ascii1 = `
                                                            \\______/                                                                                            
 `;
 
-const client = new Client({
+const prefix = "!";
+
+export const client = new Client({
   intents: [
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.MessageContent,
@@ -40,16 +45,11 @@ const client = new Client({
 });
 const commands = new Collection<string, Command>();
 
-const commandsPath = path.join(__dirname, "commands");
-const commandFiles = fs
-  .readdirSync(commandsPath)
-  .filter((file) => file.endsWith(".js"));
-const prefix = "!";
-
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  commands.set(command.name, command);
-}
+commands.set("start", new StartCommand());
+commands.set("help", new HelpCommand());
+commands.set("play", new PlayCommand());
+commands.set("storypoints", new StorypointCommand());
+commands.set("end", new EndCommand());
 
 const games = new Collection<string, Poker>();
 
@@ -130,5 +130,3 @@ client.on(Events.MessageReactionRemove, (messageReaction, user) => {
     }
   }
 });
-
-module.exports = { client, onMessage };

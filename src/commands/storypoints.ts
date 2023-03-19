@@ -2,7 +2,7 @@ import { Collection, Message } from "discord.js";
 import { Command } from "./command";
 import { Poker } from "../poker";
 
-export class HelpCommand implements Command {
+export class StorypointCommand implements Command {
   name: string;
   description: string;
   aliases: string[];

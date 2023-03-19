@@ -1,8 +1,8 @@
-import { Collection, Message } from "discord.js";
+import { Collection, GuildChannel, Message } from "discord.js";
 import { Command } from "./command";
 import { Poker } from "../poker";
 
-export class HelpCommand implements Command {
+export class StartCommand implements Command {
   name: string;
   description: string;
   aliases: string[];
@@ -19,13 +19,13 @@ export class HelpCommand implements Command {
   ): Promise<void> {
     const { games } = args;
 
-    if (message.channel.name) {
-      console.log(
-        `Planning poker is been playing in channel: ${message.channel.name}`
-      );
+    const channel = message.channel as GuildChannel;
+
+    if (channel) {
+      console.log(`Planning poker is been playing in channel: ${channel.name}`);
     }
 
-    if (games.has(message.channel.id)) {
+    if (games.has(channel.id)) {
       message.channel.send("Game is already in progress in this channel!");
       return;
     }

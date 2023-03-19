@@ -1,4 +1,7 @@
-const pokerGame = require("./client");
+import { describe, expect, it, jest } from "@jest/globals";
+
+import { client as pokerGame } from "./client";
+import { Events, Message } from "discord.js";
 
 jest.useFakeTimers();
 
@@ -14,8 +17,9 @@ describe("Main tests", () => {
           react: jest.fn(),
         },
       },
-    };
-    pokerGame.onMessage(message, 0);
+    } as unknown;
+
+    pokerGame.emit(Events.MessageCreate, message as Message);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Welcome/);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Start/);
     expect(mockedSend.mock.calls[0][0]).toMatch(/> !play/);
@@ -36,8 +40,8 @@ describe("Main tests", () => {
           react: jest.fn(),
         },
       },
-    };
-    pokerGame.onMessage(message, 0);
+    } as unknown;
+    pokerGame.emit(Events.MessageCreate, message as Message);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Current question:/);
   });
 
@@ -52,8 +56,9 @@ describe("Main tests", () => {
           react: jest.fn(),
         },
       },
-    };
-    pokerGame.onMessage(message, 0);
+    } as unknown;
+
+    pokerGame.emit(Events.MessageCreate, message as Message);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Assigned 3 to the question/);
   });
 
@@ -68,8 +73,9 @@ describe("Main tests", () => {
           react: jest.fn(),
         },
       },
-    };
-    pokerGame.onMessage(message, 0);
+    } as unknown;
+
+    pokerGame.emit(Events.MessageCreate, message as Message);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Planning Poker finished/);
     expect(mockedSend.mock.calls[0][0]).toMatch(
       /Here is an overview of your game:/
@@ -90,8 +96,9 @@ describe("aliases", () => {
           react: jest.fn(),
         },
       },
-    };
-    pokerGame.onMessage(message, 0);
+    } as unknown;
+
+    pokerGame.emit(Events.MessageCreate, message as Message);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Welcome/);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Start/);
     expect(mockedSend.mock.calls[0][0]).toMatch(/> !play/);
@@ -112,8 +119,9 @@ describe("aliases", () => {
           react: jest.fn(),
         },
       },
-    };
-    pokerGame.onMessage(message, 0);
+    } as unknown;
+
+    pokerGame.emit(Events.MessageCreate, message as Message);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Current question:/);
   });
 
@@ -128,8 +136,9 @@ describe("aliases", () => {
           react: jest.fn(),
         },
       },
-    };
-    pokerGame.onMessage(message, 0);
+    } as unknown;
+
+    pokerGame.emit(Events.MessageCreate, message as Message);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Assigned 10 to the question:/);
   });
 
@@ -144,8 +153,9 @@ describe("aliases", () => {
           react: jest.fn(),
         },
       },
-    };
-    pokerGame.onMessage(message, 0);
+    } as unknown;
+
+    pokerGame.emit(Events.MessageCreate, message as Message);
     expect(mockedSend.mock.calls[0][0]).toMatch(/Planning Poker finished/);
     expect(mockedSend.mock.calls[0][0]).toMatch(
       /Here is an overview of your game:/
