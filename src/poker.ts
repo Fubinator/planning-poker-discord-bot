@@ -2,19 +2,19 @@ import { User } from "discord.js";
 
 type Answer = {
   user: User;
-  points: Number;
+  points: number;
 };
 
 type Question = {
-  question: String;
+  question: string;
   answers: Answer[];
-  storypoints: Number;
+  storypoints: number;
 };
 
 export class Poker {
   isQuestionRunning: boolean;
   currentAnswers: Answer[];
-  currentQuestion: String;
+  currentQuestion: string;
   questions: Question[];
   users: User[];
 
@@ -34,16 +34,16 @@ export class Poker {
     this.users = this.users.filter((usr) => usr !== user);
   }
 
-  playQuestion(question: String) {
+  playQuestion(question: string) {
     this.currentQuestion = question;
     this.isQuestionRunning = true;
   }
 
-  addAnswer(user: User, points: Number) {
+  addAnswer(user: User, points: number) {
     this.currentAnswers.push({ user, points });
   }
 
-  finishQuestion(storypoints: Number) {
+  finishQuestion(storypoints: number) {
     this.questions.push({
       question: this.currentQuestion,
       answers: this.currentAnswers,
