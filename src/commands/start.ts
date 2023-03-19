@@ -1,10 +1,22 @@
-const Poker = require("../poker");
+import { Collection, Message } from "discord.js";
+import { Command } from "./command";
+import { Poker } from "../poker";
 
-module.exports = {
-  name: "start",
-  description: "start command",
-  aliases: ["s", "st", "strt"],
-  async execute(message, args) {
+export class HelpCommand implements Command {
+  name: string;
+  description: string;
+  aliases: string[];
+
+  constructor() {
+    this.name = "start";
+    this.description = "start command";
+    this.aliases = ["s", "st", "strt"];
+  }
+
+  async execute(
+    message: Message,
+    args: { games: Collection<string, Poker> }
+  ): Promise<void> {
     const { games } = args;
 
     if (message.channel.name) {
@@ -33,6 +45,6 @@ module.exports = {
       ].join("\n")
     );
 
-    message.channel.lastMessage.react("👍");
-  },
-};
+    message.channel.lastMessage?.react("👍");
+  }
+}
