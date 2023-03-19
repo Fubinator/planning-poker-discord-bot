@@ -5,12 +5,12 @@ import {
   Events,
   Partials,
   Message,
-  CommandInteraction,
   User,
 } from "discord.js";
 import fs from "fs";
 import path from "path";
 import { Poker } from "./poker";
+import { Command } from "./commands/command";
 
 /* eslint-disable linebreak-style */
 const ascii1 = `
@@ -38,7 +38,7 @@ const client = new Client({
   ],
   partials: [Partials.Channel],
 });
-const commands = new Collection<String, CommandInteraction>();
+const commands = new Collection<string, Command>();
 
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs

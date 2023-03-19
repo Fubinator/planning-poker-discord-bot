@@ -1,12 +1,23 @@
-/* eslint-disable linebreak-style */
-module.exports = {
-  name: "end",
-  description: "end command",
-  execute(message, args) {
+import { Message } from "discord.js";
+import { Command } from "./command";
+
+export class EndCommand implements Command {
+  name: string;
+  description: string;
+
+  constructor(name: string, description: string) {
+    this.name = "end";
+    this.description = "end command";
+  }
+
+  async execute(message: Message, args: any): Promise<void> {
     const { games } = args;
 
     if (!games.has(message.channel.id)) {
-      return message.channel.send("There is currently no game in progress. Start a game by using the !start command.");
+      message.channel.send(
+        "There is currently no game in progress. Start a game by using the !start command."
+      );
+      return;
     }
 
     const pokerGame = games.get(message.channel.id);
@@ -31,8 +42,9 @@ module.exports = {
     );
 
     pokerGame.finishGame();
-    if (games.has(message.channel.id)) games.delete(message.channel.id);
 
-    return;
-  },
-};
+    if (games.has(message.channel.id)) {
+      games.delete(message.channel.id);
+    }
+  }
+}
