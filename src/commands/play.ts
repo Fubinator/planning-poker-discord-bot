@@ -1,19 +1,41 @@
-/* eslint-disable linebreak-style */
-module.exports = {
-  name: "play",
-  description: "play command",
-  aliases: ["p", "go"],
-  execute(message, args) {
+import { Collection, Message } from "discord.js";
+import { Command } from "./command";
+import { Poker } from "../poker";
+
+export class PlayCommand implements Command {
+  name: string;
+  description: string;
+  aliases: string[];
+
+  constructor() {
+    this.name = "play";
+    this.description = "play command";
+    this.aliases = ["p", "go"];
+  }
+
+  async execute(
+    message: Message,
+    args: { games: Collection<string, Poker>; waitingSeconds: number }
+  ): Promise<void> {
     const { games } = args;
 
     if (!games.has(message.channel.id)) {
-      return message.channel.send("There is currently no game in progress. Start a game by using the !start command.");
+      message.channel.send(
+        "There is currently no game in progress. Start a game by using the !start command."
+      );
+      return;
     }
 
     const pokerGame = games.get(message.channel.id);
 
-    if (pokerGame.isQuestionRunning)
-      return message.channel.send("There is already a question in progress.");
+    if (!pokerGame) {
+      return;
+    }
+
+    if (pokerGame.isQuestionRunning) {
+      message.channel.send("There is already a question in progress.");
+      return;
+    }
 
     const question = message.content.split(" ").splice(1).join(" ");
 
@@ -37,5 +59,5 @@ module.exports = {
         ].join("\n")
       );
     }, args.waitingSeconds);
-  },
-};
+  }
+}
