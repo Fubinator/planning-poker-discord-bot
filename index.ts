@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { client } = require("./src/client");
+import { client } from "./src/client";
 
 // distinguishing the different types of error
 // otherwhise we can use only one try/catch block and return a general error

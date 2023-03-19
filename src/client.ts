@@ -1,13 +1,16 @@
-/* eslint-disable indent */
-const {
+import {
   Client,
   Collection,
   GatewayIntentBits,
   Events,
   Partials,
-} = require("discord.js");
-const fs = require("fs");
-const path = require("path");
+  Message,
+  CommandInteraction,
+  User,
+} from "discord.js";
+import fs from "fs";
+import path from "path";
+import { Poker } from "./poker";
 
 /* eslint-disable linebreak-style */
 const ascii1 = `
@@ -35,7 +38,7 @@ const client = new Client({
   ],
   partials: [Partials.Channel],
 });
-client.commands = new Collection();
+const commands = new Collection<String, CommandInteraction>();
 
 const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs
@@ -45,10 +48,10 @@ const prefix = "!";
 
 for (const file of commandFiles) {
   const command = require(`./commands/${file}`);
-  client.commands.set(command.name, command);
+  commands.set(command.name, command);
 }
 
-const games = new Collection();
+const games = new Collection<string, Poker>();
 
 client.on("ready", () => {
   console.log(ascii1);
@@ -57,7 +60,10 @@ client.on("ready", () => {
 
 const timeoutInSeconds = 30 * 1000;
 
-const onMessage = async (message, waitingSeconds = timeoutInSeconds) => {
+const onMessage = async (
+  message: Message,
+  waitingSeconds = timeoutInSeconds
+) => {
   //ignore the message if it's a message from the bot or it doesn't start with !
   if (message.author.bot) return;
 
@@ -67,7 +73,7 @@ const onMessage = async (message, waitingSeconds = timeoutInSeconds) => {
     );
 
     if (game && game.isQuestionRunning) {
-      game.addAnswer(message.author.username, message.content);
+      game.addAnswer(message.author, parseInt(message.content));
     }
   }
 
@@ -76,14 +82,17 @@ const onMessage = async (message, waitingSeconds = timeoutInSeconds) => {
   //execute commands dynamically via command.execute(message, allArgs), instead of switch/case
   //and manual execution. This makes the codebase easier to maintain and scale :)
   const allArgs = { args, games, waitingSeconds };
-  const commandName = args.shift().toLowerCase();
+
+  const commandName = args?.shift()?.toLowerCase();
+
+  if (!commandName) {
+    return;
+  }
 
   //get the command based on the raw command name, or any one of its aliases
   const command =
-    client.commands.get(commandName) ||
-    client.commands.find(
-      (cmd) => cmd.aliases && cmd.aliases.includes(commandName)
-    );
+    commands.get(commandName) ||
+    commands.find((cmd) => cmd.aliases && cmd.aliases.includes(commandName));
 
   if (!command) return;
 
@@ -100,19 +109,25 @@ client.on(Events.MessageCreate, onMessage);
 
 client.on(Events.MessageReactionAdd, (messageReaction, user) => {
   if (
-    messageReaction.message.content.indexOf("Welcome to planning poker.") !== -1
+    messageReaction.message.content?.indexOf("Welcome to planning poker.") !==
+    -1
   ) {
     const game = games.get(messageReaction.message.channel.id);
-    game.addUser(user);
+    if (game) {
+      game.addUser(user as User);
+    }
   }
 });
 
 client.on(Events.MessageReactionRemove, (messageReaction, user) => {
   if (
-    messageReaction.message.content.indexOf("Welcome to planning poker.") !== -1
+    messageReaction.message.content?.indexOf("Welcome to planning poker.") !==
+    -1
   ) {
     const game = games.get(messageReaction.message.channel.id);
-    game.removeUser(user);
+    if (game) {
+      game.removeUser(user as User);
+    }
   }
 });
 
