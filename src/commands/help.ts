@@ -1,8 +1,18 @@
-module.exports = {
-  name: "help",
-  description: "help command",
-  aliases: ["/?", "h"],
-  execute(message) {
+import { Message } from "discord.js";
+import { Command } from "./command";
+
+export class HelpCommand implements Command {
+  name: string;
+  description: string;
+  aliases: string[];
+
+  constructor() {
+    this.name = "help";
+    this.description = "help command";
+    this.aliases = ["/?", "h"];
+  }
+
+  async execute(message: Message): Promise<void> {
     message.channel.send(
       [
         "Here are the known commands:",
@@ -11,8 +21,8 @@ module.exports = {
         "- `!storypoints <points>`: defines the running question with a numeric point",
         "- `!end`: wraps a game and shows the overview of questions",
         "",
-        "A game manual can be found at: https://en.wikipedia.org/wiki/Planning_poker"
+        "A game manual can be found at: https://en.wikipedia.org/wiki/Planning_poker",
       ].join("\n")
     );
   }
-};
+}

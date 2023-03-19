@@ -5,7 +5,7 @@ export class EndCommand implements Command {
   name: string;
   description: string;
 
-  constructor(name: string, description: string) {
+  constructor() {
     this.name = "end";
     this.description = "end command";
   }
