@@ -74,7 +74,13 @@ const onMessage = async (
 
     if (game && game.isQuestionRunning) {
       game.addAnswer(message.author, parseInt(message.content));
+      message.channel.send("Answer submitted!");
+      return;
     }
+
+    message.channel.send(
+      "You are currently not registered for a game. Please join a game first."
+    );
   }
 
   const args = message.content.slice(prefix.length).trim().split(/ +/);
