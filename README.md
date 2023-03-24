@@ -55,7 +55,7 @@ Once your instance of the bot is added to your chosen server, gather your partic
 
 Once every has there focus in the right channel, to start playing, type `!start`. The bot will will commence the game.
 
-To join the game, each player must respond to the bot's last message.
+To join the game, each player has to add a reaction to the bot's last message.
 
 ### Running a question
 
