@@ -55,6 +55,8 @@ Once your instance of the bot is added to your chosen server, gather your partic
 
 Once every has there focus in the right channel, to start playing, type `!start`. The bot will will commence the game.
 
+To join the game, each player must respond to the bot's last message.
+
 ### Running a question
 
 To put forward a user story or question to consider, just type `!play` followed by the question or feature to be considered. All players will then have 30 seconds to send their estimation to the bot via direct message.
