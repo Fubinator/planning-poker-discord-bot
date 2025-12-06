@@ -30,7 +30,7 @@ export class StartCommand implements Command {
       return;
     }
 
-    games.set(message.channel.id, new Poker());
+    games.set(message.channel.id, new Poker(message.channel));
 
     await message.channel.send(
       [

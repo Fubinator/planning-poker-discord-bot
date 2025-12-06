@@ -75,6 +75,17 @@ const onMessage = async (
     if (game && game.isQuestionRunning) {
       game.addAnswer(message.author, parseInt(message.content));
       message.channel.send("Answer submitted!");
+      if (game.allAlswersReceived()) {
+        game.cancelQuestionTimer();
+        game.gameChannel?.send(
+          [
+            "All answers received! Discuss the estimates provided and then submit the final story points for the question with:",
+            "\n> !storypoints <points>\n",
+            "The estimates I received were as follows:\n" +
+            game.collectAnswers().join("\n")
+          ].join("\n")
+        );
+      }
       return;
     }
 

@@ -45,19 +45,17 @@ export class PlayCommand implements Command {
 
     pokerGame.playQuestion(question);
 
-    setTimeout(() => {
-      const answerAndResults = [];
-      for (const answer of pokerGame.currentAnswers) {
-        answerAndResults.push(`${answer.user} estimated: ${answer.points}`);
-      }
+    const timer = setTimeout(() => {
       message.channel.send(
         [
           "Time's up! Discuss the estimates provided and then submit the final story points for the question with:",
           "> !storypoints <points>\n",
           "The estimates I received were as follows:\n" +
-            answerAndResults.join("\n"),
+            pokerGame.collectAnswers().join("\n"),
         ].join("\n")
       );
     }, args.waitingSeconds);
+
+    pokerGame.saveQuestionTimer(timer);
   }
 }
