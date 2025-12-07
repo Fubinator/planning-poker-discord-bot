@@ -41,6 +41,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ env.DOCKER_REGISTRY_URL }}/${{ env.DOCKER_IMAGE_NAME }}:latest
-          cache-from: type=registry,ref=${{ env.DOCKER_REGISTRY_URL }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache
-          cache-to: type=registry,ref=${{ env.DOCKER_REGISTRY_URL }}/${{ env.DOCKER_IMAGE_NAME }}:buildcache,mode=max
+            ${{ vars.DOCKER_REGISTRY_URL }}/${{ vars.DOCKER_IMAGE_NAME }}:latest
+          cache-from: type=registry,ref=${{ vars.DOCKER_REGISTRY_URL }}/${{ vars.DOCKER_IMAGE_NAME }}:buildcache
+          cache-to: type=registry,ref=${{ vars.DOCKER_REGISTRY_URL }}/${{ vars.DOCKER_IMAGE_NAME }}:buildcache,mode=max
