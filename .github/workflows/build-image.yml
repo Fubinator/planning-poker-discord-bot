@@ -44,3 +44,10 @@ jobs:
             ${{ vars.DOCKER_REGISTRY_URL }}/${{ vars.DOCKER_IMAGE_NAME }}:latest
           cache-from: type=registry,ref=${{ vars.DOCKER_REGISTRY_URL }}/${{ vars.DOCKER_IMAGE_NAME }}:buildcache
           cache-to: type=registry,ref=${{ vars.DOCKER_REGISTRY_URL }}/${{ vars.DOCKER_IMAGE_NAME }}:buildcache,mode=max
+          
+      - name: WatchTower update
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://watchtower.devhousestudios.com.br/v1/update'
+          method: 'GET'
+          bearerToken: 'EyWSGYa2fdK3plJU4SaLP'
