@@ -1,4 +1,4 @@
-import { User } from "discord.js";
+import { TextBasedChannel, User } from "discord.js";
 
 type Answer = {
   user: User;
@@ -17,13 +17,16 @@ export class Poker {
   currentQuestion: string;
   questions: Question[];
   users: User[];
+  timer?: NodeJS.Timeout;
+  gameChannel?: TextBasedChannel;
 
-  constructor() {
+  constructor(gameChannel:TextBasedChannel) {
     this.isQuestionRunning = false;
     this.currentAnswers = [];
     this.currentQuestion = "";
     this.questions = [];
     this.users = [];
+    this.gameChannel = gameChannel;
   }
 
   addUser(user: User) {
@@ -39,8 +42,27 @@ export class Poker {
     this.isQuestionRunning = true;
   }
 
+  saveQuestionTimer(timer: NodeJS.Timeout) {
+    this.timer = timer;
+  }
+
+  cancelQuestionTimer() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = undefined;
+    }
+  }
+
   addAnswer(user: User, points: number) {
     this.currentAnswers.push({ user, points });
+  }
+
+  allAlswersReceived(): boolean {
+    return this.currentAnswers.length === this.users.filter(u=>!u.bot).length;
+  }
+
+  collectAnswers(): string[] {
+    return this.currentAnswers.map((answer) => `${answer.user} estimated: ${answer.points}`);
   }
 
   finishQuestion(storypoints: number) {
